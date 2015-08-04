@@ -1,0 +1,180 @@
+/* Auto-generated Java Test Case */
+@Description("Sample")
+public class WCTest extends me.edwards.wctest.test.TestSet
+{
+    private Object subject;
+
+    public void setUp()
+    {
+        subject = new Answer();
+    }
+
+    @Description("Sample regex test")
+    public void test0()
+    {
+        assertMatches(invoke(subject, "teenSum", 3,  4), "Hello world");
+    }
+
+    @Description("Sample regex test")
+    public void test1()
+    {
+        assertMatches(invoke(subject, "teenSum", 13,  2), "hello/[s]?");
+    }
+
+    @Description("Sample")
+    public void test2()
+    {
+        assertIs(invoke(subject, "teenSum", 3,  4), 7);
+    }
+
+    @Description("Sample")
+    public void test3()
+    {
+        assertIsNot(invoke(subject, "teenSum", 2, 16), 19);
+    }
+
+    @Description("Sample")
+    public void test4()
+    {
+        assertIs(invoke(subject, "teenSum"), invoke(subject, "teenSum"));
+    }
+
+    @Description("Sample class")
+    public void test5()
+    {
+        assertIs(invoke(same.package.Class, "teenSum", 13, 13), 19);
+    }
+
+    @Description("Sample class")
+    public void test6()
+    {
+        assertIs(invoke(same.package.Class, "teenSum", 2, 18), 19);
+    }
+
+    @Description("Sample float")
+    public void test7()
+    {
+        assertIs(invoke(subject, "teenSum", 3,  4), new DoubleValue("-14.03"));
+    }
+
+    @Description("Sample float")
+    public void test8()
+    {
+        assertIs(invoke(subject, "teenSum", 13,  2), new DoubleValue("14.03", 0.001));
+    }
+
+    @Description("Sample")
+    public void test9()
+    {
+        assertIs(invoke(subject, "teenSum", 3,  4), 7);
+    }
+
+    @Description("Sample")
+    public void test10()
+    {
+        assertIsNot(invoke(subject, "teenSum", 2, 16), 19);
+    }
+
+    @Description("Sample single")
+    public void test11()
+    {
+        assertIs(invoke(subject, "teenSum", 4, 5), 6);
+    }
+
+    @Description("Sample single 2")
+    public void test12()
+    {
+        assertIs(invoke(subject, "teenSum", 5, 6), 7);
+    }
+
+    @Description("Sample error")
+    public void test13()
+    {
+        assertIs(invoke(subject, "teenSum", 6, 7), invoke(subject, "teenSum", 6, 7));
+    }
+
+    @Description("Sample IO 1")
+    public void test14()
+    {
+        setSystemIn("Input String", "Second Input String");
+        assertIs(invoke(subject, "teenSum", 7, 8), 9);
+        assertSystemOutIs("Output String");
+    }
+
+    @Description("Sample IO 2")
+    public void test15()
+    {
+        setSystemIn("Input String", "Second Input");
+        assertIs(invoke(subject, "teenSum", 8, 9), invoke(subject, "teenSum", 8, 9));
+        assertSystemOutIs("Output");
+    }
+
+    @Description("Sample")
+    public void test16()
+    {
+        setSystemIn("Input");
+        assertIs(invoke(invoke(invoke(obj, "method", 1, 2), "method2"), "teenSum", 3, 4), 5);
+    }
+
+    @Description("Sample")
+    public void test17()
+    {
+        setSystemIn("Input");
+        assertIs(invoke(invoke(invoke(subject, "method", args), "method2").obj2, "method3"), 2);
+        assertSystemOutIs("Output");
+    }
+
+    @Description("Sample")
+    public void test18()
+    {
+        assertIs(invoke(subject, "teenSum", 3,  4), new Range(2, 4, inclusive));
+    }
+
+    @Description("Sample Operators")
+    public void test19()
+    {
+        assertIsEq(invoke(subject, "teenSum", 1, 2), 3);
+    }
+
+    @Description("Sample Operators")
+    public void test20()
+    {
+        assertIsNotEq(invoke(subject, "teenSum", 1, 2), 3);
+    }
+
+    @Description("Sample Operators")
+    public void test21()
+    {
+        assertIsGte(invoke(subject, "teenSum", 1, 2), 3);
+    }
+
+    @Description("Sample Operators")
+    public void test22()
+    {
+        assertIsLte(invoke(subject, "teenSum", 1, 2), 3);
+    }
+
+    @Description("Sample Operators")
+    public void test23()
+    {
+        assertIsGt(invoke(subject, "teenSum", 1, 2), 3);
+    }
+
+    @Description("Sample Operators")
+    public void test24()
+    {
+        assertIsLt(invoke(subject, "teenSum", 1, 2), 3);
+    }
+
+    @Description("Sample")
+    public void test25()
+    {
+        assertIsInstanceOf(invoke(subject, "teenSum", 1), Sample.class);
+    }
+
+    @Description("Sample")
+    public void test26()
+    {
+        assertThrows(invoke(subject, "teenSum", 2), Throwable);
+    }
+}

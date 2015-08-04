@@ -1,0 +1,134 @@
+# ==============================================================================
+# Title : WC Test Grammar (EBNF)
+#
+# Author: Matthew Edwards
+# ==============================================================================
+
+<File>       ::= <Test> <String>?
+                 <LBrace>
+                 <Subj>?
+                 <Block>*
+                 <RBrace>
+
+<Subj>       ::= <Subject>
+                 <LBrace>
+                 <Greedy>
+                 <RBrace>
+
+<Block>      ::= ( <Modifier>? <Test> <String>?
+                   <LBrace>
+                   <Block>*
+                   <RBrace>
+                 )
+               | ( <Modifier>? <Test> <String>?
+                   <LBrace>
+                   <Block>
+                   <RBrace>
+                 )
+               | ( <Modifier>? <Test> <String>?
+                   <Block>
+                 )
+               | <Statement>
+               
+<Statement>  ::= <Method>
+               ( ( <Is> 
+                   ( <Expression>
+                   | ( <Float Expression> ( <Within> <Float Expression> )? )
+                   | ( <Between> <LParen> <Expression> <Comma> <Expression> <RParen> ( <Dot> <Excl> )? )
+                   )
+                 )
+               | ( <Matches> ( <String> | <Regex> ) )
+               | ( <Instanceof> <Expression> )
+               | ( <Throws> <Expression> )
+               )?
+
+<Method>     ::= <Identifier> <LParen> <Greedy> <RParen>
+                 ( <Dot> <Identifier> <LParen> <Greedy> <RParen> )*
+                 ( <IOState> )*
+
+<IOState>    ::= <IO> ( <Greedy> | <String> )
+
+<Expression> ::= <Term> ( <Addition> <Term> )*
+
+<Term>       ::= <Factor> ( <Multiply> <Factor> )*
+
+<Factor>     ::= <Atom> ( <Power> <Atom> )*
+
+<Atom>       ::= <Integer>
+               | <Float>
+               | <String>
+               | <Identifier>
+               | <LParen> <Expression> <RParen>
+
+# ==============================================================================
+# Tokens
+# ==============================================================================
+
+<Greedy>     # SPECIAL TOKEN: Takes all tokens until the grammar node is completed
+
+<Test>       ::= test[s]?
+
+<Modifier>   ::= example
+               | hidden
+               
+<Subject>    ::= subject
+
+<Is>         ::= is
+               | is not
+               | is ==
+               | is !=
+               | is >=
+               | is >
+               | is <=
+               | is <
+
+<Matches>    ::= matches
+
+<Within>     ::= within
+
+<Between>    ::= between
+
+<Instanceof> ::= instanceof
+
+<Throws>     ::= throws
+
+<Excl>       ::= inclusive
+               | exclusive
+
+<Comma>      ::= [,]
+
+<LBrace>     ::= [{]
+
+<RBrace>     ::= [}]
+
+<LParen>     ::= [(]
+
+<RParen>     ::= [)]
+
+<IO>         ::= [<<] | [>>]
+
+<Power>      ::= [**]
+
+<Multiply>   ::= [/] | [*] | [%]
+
+<Addition>   ::= [+] | [-]
+
+<Integer>    ::= ( [0] | ( [-]? [1-9] [0-9]* ) )
+
+<Float>      ::= ( [0] | ( [-]? [1-9] [0-9]* ) ) [.] [0-9]*
+
+<String>     ::= ["] ( [^"]+ | \( [btnfr"'\] | [0-3]? [0-7]{1,2} | u[0-9a-fA-F]{4} ) )* ["]
+
+<Regex>      ::= [/] ( [^/]+ | \( [/] ) )* [/]
+
+<Identifier> ::= [a-zA-Z_] [a-zA-Z0-9_]* ( [\n\r\t ]* [\\.] [\n\r\t ]* [a-zA-Z] [a-zA-Z0-9_]* )*
+
+<Dot>        ::= [.]
+
+# ==============================================================================
+# Hidden Tokens
+# ==============================================================================
+
+<Whitespace> ::= [\n\r\t ]
+
+<Comment>    ::= ( /* ( [^*] | [\r\n] | ([*]+ ( [^*/] | [\r\n] ) ) )* [*]+/ ) | ( //.* )

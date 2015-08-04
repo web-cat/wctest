@@ -1,0 +1,63 @@
+tests "Sample"
+{
+  subject { new Answer() }
+
+  example tests "regex test"
+  {
+    teenSum( 3,  4) matches "Hello world"
+    teenSum(13,  2) matches /hello\/[s]?/
+  }
+
+  teenSum( 3,  4) is 7
+  teenSum( 2, 16) is not 19
+  teenSum()
+
+  hidden tests "class"
+  {
+    same.package.Class.teenSum(13, 13) is 19
+    same.package.Class.teenSum( 2, 18) is 19
+  }
+
+  test "float"
+  {
+    teenSum( 3,  4) is -14.03
+    teenSum(13,  2) is 14.03 within 0.001
+  }
+
+  test
+  {
+    teenSum( 3,  4) is 7
+    teenSum( 2, 16) is not 19
+  }
+
+  test "single" teenSum( 4, 5) is 6
+  test "single 2" { teenSum( 5, 6) is 7 }
+
+  test "error" teenSum( 6, 7)
+  test "IO 1" teenSum( 7, 8)
+	<< Input String
+    << "Second Input String"
+	>> Output String
+    is 9
+
+  test "IO 2" teenSum( 8, 9) << Input String << "Second Input" >> Output
+  
+  obj.method(1, 2).method2().teenSum( 3, 4) << "Input" is 5
+  
+  method(args).method2().obj2.method3() << Input >> "Output" is 2
+  
+  teenSum( 3,  4) is between ( 2, 4) . inclusive
+  
+  test "Operators"
+  {
+    teenSum( 1, 2) is == 3
+    teenSum( 1, 2) is != 3
+    teenSum( 1, 2) is >= 3
+    teenSum( 1, 2) is <= 3
+    teenSum( 1, 2) is > 3
+    teenSum( 1, 2) is < 3
+  }
+  
+  teenSum(1) instanceof Sample.class
+  teenSum(2) throws Throwable
+}
