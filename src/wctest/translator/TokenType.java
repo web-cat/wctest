@@ -69,7 +69,7 @@ public enum TokenType
     
     /**
      * Returns token type name
-     * @return
+     * @return Name
      */
     public String getName()
     {
@@ -78,7 +78,7 @@ public enum TokenType
     
     /**
      * Returns token type regex as Pattern
-     * @return
+     * @return Regex pattern
      */
     public Pattern getPattern()
     {
@@ -87,7 +87,7 @@ public enum TokenType
     
     /**
      * Returns true if this token type should be ignored by the lexer
-     * @return
+     * @return True if should be ignored
      */
     public boolean isIgnored()
     {

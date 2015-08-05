@@ -26,7 +26,7 @@ public class TokenTree
     
     /**
      * Returns this node's token
-     * @return
+     * @return Token
      */
     public Token getToken()
     {
@@ -64,7 +64,7 @@ public class TokenTree
     /**
      * Returns the child at the specified index
      * @param index Index of child
-     * @return
+     * @return Child
      */
     public TokenTree getChild(int index)
     {
@@ -73,7 +73,7 @@ public class TokenTree
     
     /**
      * Returns number of children
-     * @return
+     * @return Number of children
      */
     public int getChildren()
     {

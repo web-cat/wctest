@@ -32,7 +32,7 @@ public class Token
     
     /**
      * Returns the type of this token
-     * @return
+     * @return TokenType
      */
     public TokenType getType()
     {
@@ -41,7 +41,7 @@ public class Token
     
     /**
      * Returns the text of this token
-     * @return
+     * @return Text
      */
     public String getText()
     {
@@ -50,7 +50,7 @@ public class Token
     
     /**
      * Returns the line of this token
-     * @return
+     * @return Line
      */
     public int getLine()
     {
@@ -59,7 +59,7 @@ public class Token
     
     /**
      * Returns the column of this token
-     * @return
+     * @return Column
      */
     public int getCol()
     {

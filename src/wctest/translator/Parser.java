@@ -19,7 +19,7 @@ public class Parser
     /**
      * Parses a list of tokens
      * @param file
-     * @return 
+     * @return Returns a parsed TokenTree
      */
     public static TokenTree parse(ArrayList<Token> file)
     {
